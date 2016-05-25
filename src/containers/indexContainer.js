@@ -1,3 +1,3 @@
-import  socketReactClass  from './socketContainer';
+import  mainReactClass  from './mainContainer';
 
-export default socketReactClass;
+export default mainReactClass;

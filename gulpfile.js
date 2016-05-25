@@ -25,7 +25,7 @@ var fs = require("fs");
 var individualsJs = [
   './src/bower_components/uikit/js/uikit.min.js',
   './src/bower_components/jquery/dist/jquery.min.js',
-  './src/assets/js/rm.js'
+  //'./src/assets/js/rm.js'
 ]
 
 var individualsCss = [
@@ -74,7 +74,7 @@ var mergeCss = function(){
 var babelDevelopment = function(){
   var b = browserify({
     entries: [
-      //'./src/assets/js/rm.js',
+      './src/assets/js/rm.js',
       './src/index.js'
     ],
     debug: true
@@ -144,6 +144,7 @@ gulp.task('js',['clean'],function(){
     babelProduction();
   }else{
     babelDevelopment();
+    //babelProduction();
   }
   if(individualsJs.length > 0){
     indJs();
@@ -167,6 +168,10 @@ gulp.task('srcToApp',['clean'],function(){
     '!./src/node_modules/**/*.*',
     '!./src/bower_components/**/*.*',
     '!./src/assets/**/*.*',
+    '!./src/containers/**/*.*',
+    '!./src/components/**/*.*',
+    '!./src/reducers/**/*.*',
+    '!./src/actions/**/*.*',
     './src/**/*.*'
   ])
   .pipe(gulp.dest('./app'))

@@ -1,24 +1,29 @@
-//const dialog = require('electron').remote;
-
 class randomMessages{
 
   constructor(){
-    this.server = io('http://localhost:8080');
-    this.configEvents();
+    this.socket = io('http://localhost:8080');
+    this.isConfig = false;
+    //this.configEvents();
   }
-  configEvents(){
-    this.server.on('welcome',function(data){
-      //console.log(data)
-      console.log(dialog);
-      dialog.showMessageBox({message: 'ESTE ES EL MENSAJE'});
+  configEvents(receiveMessage){
+    this.socket.on('message',function(data){
+      console.log('received message');
+      receiveMessage(data);
     });
+    this.isConfig = true;
+  }
+  test(){
+    console.log('test');
   }
   addEvent(name,event){
-    this.server.on(name,event);
+    this.socket.on(name,event);
+  }
+  sendTest(){
+    console.log('emit');
+    console.log(this);
+    this.socket.emit('hello',{message: 'emit hello'});
   }
 }
 
-window.onload = function() {
-  const rm = new randomMessages();
-  //rm.init();
-}
+export default randomMessages;
+//const rm = new randomMessages();
