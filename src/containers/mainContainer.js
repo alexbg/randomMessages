@@ -19,6 +19,7 @@ var actionsButtons = function(dispatch){
     }
   }
 }
+
 console.log('Funcion');
 console.log(mainComponent);
 const Main = connect(

@@ -2,3 +2,4 @@ node_modules
 app
 src/node_modules
 dist
+build
