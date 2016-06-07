@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactUiKit from 'reactuikit';
 import randomMessage from './../assets/js/rm';
+import ruk from 'reactuikit';
 
 const rm = new randomMessage();
 
@@ -13,11 +13,12 @@ const MainComponent = function(state){
   }
 
   if(state.messages != undefined){
+
     var messages = state.messages.map(function(element,index){
       return (
-        <ReactUiKit.panel title='Test' header box key={'message-'+index}>
-          {element}
-        </ReactUiKit.panel>
+        <ruk.panel title={element.time} header box key={'message-'+index}>
+          {element.message}
+        </ruk.panel>
       )
     });
   }
@@ -27,9 +28,24 @@ const MainComponent = function(state){
       <div className='uk-grid'>
         <div className='uk-width-1-1'>
           <div className='fixed-buttons'>
-            <button onClick={rm.sendReady.bind(rm)}>I am ready</button>
-            <button onClick={rm.sendMessage.bind(rm)}>Send message</button>
+            <ruk.button onClick={rm.sendReady.bind(rm)}>I am ready</ruk.button>
+            <ruk.button
+              modal='modalMessage'>
+              Make a message
+            </ruk.button>
           </div>
+          <ruk.modal.modal id='modalMessage'>
+            <ruk.modal.dialog>
+              <textarea>
+              </textarea>
+              <ruk.modal.modalFooter>
+                <ruk.button onClick={rm.sendMessage.bind(rm)}>
+                  Send Message
+                </ruk.button>
+              </ruk.modal.modalFooter>
+            </ruk.modal.dialog>
+
+          </ruk.modal.modal>
           {messages}
           {state.children}
         </div>

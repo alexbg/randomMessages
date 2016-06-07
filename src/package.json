@@ -29,7 +29,7 @@
     "react-router": "^2.4.1",
     "react-router-redux": "^4.0.4",
     "react-tap-event-plugin": "^1.0.0",
-    "reactuikit": "0.0.5",
+    "reactuikit": "^0.0.6",
     "redux": "^3.5.2"
   }
 }

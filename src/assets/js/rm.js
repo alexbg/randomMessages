@@ -31,7 +31,8 @@ class randomMessages{
   }
   sendMessage(message){
     console.log('sending message');
-    message = ' I am the message';
+    console.log($('textarea').val());
+    message = $('textarea').val();
     this.socket.emit('message',{message: message});
   }
   sendReady(){

@@ -12,7 +12,7 @@ var actionsButtons = function(dispatch){
   return {
     receiveMessage: function(data){
       console.log('container add message');
-      dispatch(actions.receiveMessage(data.message));
+      dispatch(actions.receiveMessage(data));
     },
     saveMessage: function(){
       dispatch(actions.saveMessage(message));
