@@ -33,18 +33,37 @@ const MainComponent = function(state){
               modal='modalMessage'>
               Make a message
             </ruk.button>
+            <ruk.button
+              modal='modalOptions'>
+              Options
+            </ruk.button>
           </div>
+
           <ruk.modal.modal id='modalMessage'>
             <ruk.modal.dialog>
-              <textarea>
-              </textarea>
+              <ruk.form.form id='messageForm'>
+                <textarea>
+                </textarea>
+              </ruk.form.form>
               <ruk.modal.modalFooter>
                 <ruk.button onClick={rm.sendMessage.bind(rm)}>
                   Send Message
                 </ruk.button>
               </ruk.modal.modalFooter>
             </ruk.modal.dialog>
+          </ruk.modal.modal>
 
+          <ruk.modal.modal id='modalOptions'>
+            <ruk.modal.dialog>
+              <ruk.form.form id='optionsForm' modifiers='stacked'>
+                <ruk.form.input
+                  label='Set time'
+                  type='text'
+                  id='inputInterval'
+                  row
+                  onChange={rm.setReadyinterval.bind(rm)}/>
+              </ruk.form.form>
+            </ruk.modal.dialog>
           </ruk.modal.modal>
           {messages}
           {state.children}

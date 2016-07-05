@@ -3,14 +3,18 @@ class randomMessages{
   constructor(){
     this.socket = io('http://localhost:8080');
     this.isConfig = false;
+    this.interval = '';
+    this.isReady = false;
     //this.configEvents();
   }
   configEvents(receiveMessage,receiveInfo){
     this.socket.on('message',function(data){
       console.log('received message');
       receiveMessage(data);
-      this.sendReady();
-
+      if(!this.setInterval){
+        this.sendReady();
+      }
+      this.isReady = false;
     }.bind(this))
     this.socket.on('info',function(data){
       console.log(data);
@@ -24,10 +28,17 @@ class randomMessages{
   addEvent(name,event){
     this.socket.on(name,event);
   }
-  sendTest(){
-    console.log('emit');
-    console.log(this);
-    this.socket.emit('hello',{message: 'emit hello'});
+  setReadyinterval(){
+    console.log('Setting interval');
+    window.clearInterval(this.interval);
+    this.interval = setInterval(function(){
+      console.log(this.isReady);
+      if(!this.isReady){
+        this.sendReady();
+        this.isReady = true;
+      }
+    }.bind(this),$('#inputInterval').val() * 60000);
+
   }
   sendMessage(message){
     console.log('sending message');
